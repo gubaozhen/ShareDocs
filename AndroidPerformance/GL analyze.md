@@ -32,7 +32,7 @@ S7 7.0不再累加至APP，只会显示在系统级的占用中，7.0之前的�
 
 
 
-### process 占用对比图
+###  process 占用对比图
 
 * N5 4.4.4
 
@@ -57,7 +57,7 @@ S7 7.0不再累加至APP，只会显示在系统级的占用中，7.0之前的�
 * 包括：实验进程、系统总体meminfo
 
 
-###N5(6.0.1) 
+### N5(6.0.1)
 
 * N5(6.0.1) before — process info
 ~~~
@@ -370,7 +370,7 @@ Total RAM: 1899508 kB (status critical)
 
 
 
-### N5 (4.4.4)
+###  N5 (4.4.4)
 
 * N5 (4.4.4) before — process info
 ~~~
@@ -437,7 +437,7 @@ Total RAM: 1899508 kB (status critical)
      OpenSSL Sockets:        4
 ~~~
 
-### S7 (7.0)
+###  S7 (7.0)
 * S7 (7.0) before — process info
 ~~~
 ** MEMINFO in pid 30892 [com.ksmobile.launcher] **
@@ -1714,7 +1714,7 @@ Total RAM: 1857352 kB (status critical)
    Tuning: 192 (large 512), oom 322560 kB, restore limit 107520 kB (high-end-gfx)
 ~~~
 
-### Huawei P6 (7.0)
+###  Huawei P6 (7.0)
 
 > 900 times之后，系统无明显卡顿
 > 1400 times之后，点按home键，系统明显反应变慢，系统Launcher重启
