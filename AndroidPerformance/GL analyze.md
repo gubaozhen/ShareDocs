@@ -60,7 +60,7 @@ S7 7.0不再累加至APP，只会显示在系统级的占用中，7.0之前的�
 ### N5(6.0.1)
 
 * N5(6.0.1) before — process info
-~~~
+~~~java
 ** MEMINFO in pid 31360 [com.ksmobile.launcher] **
                    Pss  Private  Private  Swapped     Heap     Heap     Heap
                  Total    Dirty    Clean    Dirty     Size    Alloc     Free
@@ -107,7 +107,7 @@ S7 7.0不再累加至APP，只会显示在系统级的占用中，7.0之前的�
 
 * N5(6.0.1) after  — process info
   *  450*800 40KB add ~700 times
-~~~
+~~~java
 ** MEMINFO in pid 23056 [com.ksmobile.launcher] **
                    Pss  Private  Private  Swapped     Heap     Heap     Heap
                  Total    Dirty    Clean    Dirty     Size    Alloc     Free
@@ -153,7 +153,7 @@ S7 7.0不再累加至APP，只会显示在系统级的占用中，7.0之前的�
 
 * N5(6.0.1) before — system info
 
-~~~
+~~~java
 Total PSS by process:
    145909 kB: system (pid 777)
     87058 kB: com.ksmobile.launcher (pid 32395 / activities)
@@ -280,7 +280,7 @@ Total RAM: 1899508 kB (status normal)
 * N5(6.0.1) after  — system info
   * 450*800 40KB add ~700 times
 
-~~~
+~~~java
 Total PSS by process:
   1130944 kB: com.ksmobile.launcher (pid 24136 / activities)
    114538 kB: system (pid 777)
@@ -373,7 +373,7 @@ Total RAM: 1899508 kB (status critical)
 ###  N5 (4.4.4)
 
 * N5 (4.4.4) before — process info
-~~~
+~~~java
 ** MEMINFO in pid 14573 [com.ksmobile.launcher] **
                    Pss  Private  Private  Swapped     Heap     Heap     Heap
                  Total    Dirty    Clean    Dirty     Size    Alloc     Free
@@ -408,7 +408,7 @@ Total RAM: 1899508 kB (status critical)
   * 450*800 40KB add ~600 times
   * 加至400个左右之后，再创建时有明显卡顿
   * 加至674时，进程被杀
-~~~
+~~~java
 ** MEMINFO in pid 14573 [com.ksmobile.launcher] **
                    Pss  Private  Private  Swapped     Heap     Heap     Heap
                  Total    Dirty    Clean    Dirty     Size    Alloc     Free
@@ -439,7 +439,7 @@ Total RAM: 1899508 kB (status critical)
 
 ###  S7 (7.0)
 * S7 (7.0) before — process info
-~~~
+~~~java
 ** MEMINFO in pid 30892 [com.ksmobile.launcher] **
                    Pss  Private  Private  SwapPss     Heap     Heap     Heap
                  Total    Dirty    Clean    Dirty     Size    Alloc     Free
@@ -486,7 +486,7 @@ Total RAM: 1899508 kB (status critical)
 * S7 (7.0) after — process info
   * 450*800 40KB add ~700 times
   * add ~1639times crash
-~~~
+~~~java
 ~700 times
 ** MEMINFO in pid 30892 [com.ksmobile.launcher] **
                    Pss  Private  Private  SwapPss     Heap     Heap     Heap
@@ -531,7 +531,7 @@ Total RAM: 1899508 kB (status critical)
     Death Recipients:        4      OpenSSL Sockets:        3
 ~~~
 
-~~~
+~~~java
 ~1600 times
 ** MEMINFO in pid 30892 [com.ksmobile.launcher] **
                    Pss  Private  Private  SwapPss     Heap     Heap     Heap
@@ -569,7 +569,7 @@ Total RAM: 1899508 kB (status critical)
 
 
 * S7 (7.0) before-- system meminfo
-~~~
+~~~java
 adb shell dumpsys meminfo
 Applications Memory Usage (in Kilobytes):
 Uptime: 159462877 Realtime: 621816430
@@ -776,7 +776,7 @@ Total RAM: 3,618,628K (status normal)
 
 * S7 (7.0) add to 700 times—system
 
-~~~
+~~~java
 adb shell dumpsys meminfo
 Applications Memory Usage (in Kilobytes):
 Uptime: 159462877 Realtime: 621816430
@@ -984,7 +984,7 @@ Total RAM: 3,618,628K (status normal)
 
 
 * S7 (7.0) add to 1600times-- system meminfo
-~~~
+~~~java
 adb shell dumpsys meminfo
 Applications Memory Usage (in Kilobytes):
 Uptime: 159822185 Realtime: 622175738
@@ -1085,7 +1085,7 @@ N5X (6.0)
 
 * before — process info
 
-~~~
+~~~java
 adb shell dumpsys meminfo com.ksmobile.launcher
 Applications Memory Usage (kB):
 Uptime: 74645983 Realtime: 77651699
@@ -1146,7 +1146,7 @@ Uptime: 74645983 Realtime: 77651699
 ~~~
 
 * after — process info
-~~~
+~~~java
 ** MEMINFO in pid 7723 [com.ksmobile.launcher] **
                    Pss  Private  Private  Swapped     Heap     Heap     Heap
                  Total    Dirty    Clean    Dirty     Size    Alloc     Free
@@ -1192,7 +1192,7 @@ Uptime: 74645983 Realtime: 77651699
 
 * before — system info
 
-~~~
+~~~java
 adb shell dumpsys meminfo
 Applications Memory Usage (kB):
 Uptime: 74450605 Realtime: 77456321
@@ -1483,7 +1483,7 @@ Total RAM: 1857352 kB (status moderate)
 ~~~
 
 *  after — systeminfo
-~~~
+~~~java
 adb shell dumpsys meminfo
 Applications Memory Usage (kB):
 Uptime: 75090373 Realtime: 78096089
