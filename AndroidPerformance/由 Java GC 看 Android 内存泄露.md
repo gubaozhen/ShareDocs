@@ -57,6 +57,7 @@
 
 ![图1.1.1 CMCM某款应用的Debug版内存泄露OverView](http://upload-images.jianshu.io/upload_images/1481332-ca4c6177eb55ae69.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 
+
 图1.1.1 CMCM某款应用的Debug版内存泄露OverView
 
 
@@ -110,6 +111,7 @@
 
 图2.1为某APP静态集合泄露的对象汇总，可以看到总大小有11.7M之大。
 ![图2.1 某静态泄露的汇总结果](http://upload-images.jianshu.io/upload_images/1481332-5a2e015b3d5de3b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600/h/600)
+
 图2.1 某静态泄露的汇总结果
 
 
@@ -202,11 +204,13 @@ Android资源不及时关闭会出现内存泄露的地方有很多，诸如在�
 ### 3.0 虚拟机架构（HotSpot）
 图3.0.1为HotSpot虚拟机架构，具体的划分将在下文中描述，这里只需要了解大致概念。
 ![图3.0.1 HotSpot Structure](http://upload-images.jianshu.io/upload_images/1481332-1bf9a615abb8e4d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.0.1 HotSpot Structure
 
 
 本文所谈论的GC，处理的内存区块针对的主要是虚拟机的Heap，亦即堆。
 ![图3.0.2 HotSpot JVM components](http://upload-images.jianshu.io/upload_images/1481332-7061db0196475abb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.0.2 HotSpot JVM components
 
 
@@ -228,6 +232,7 @@ Android资源不及时关闭会出现内存泄露的地方有很多，诸如在�
 
 如图3.1.1所示的对象中，ObjD、ObjE、ObjF均为GC不可达，可以被GC回收掉
 ![图3.1.1 GC Roots reachable analyze](http://upload-images.jianshu.io/upload_images/1481332-473f69299d0029a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.1.1 GC Roots reachable analyze
 
 
@@ -252,11 +257,13 @@ GC运行时，需要Stop The World，HotSpot中，利用OopMap存储对象引用
 
 其中年轻代又分为三个区域（一个Eden，两个Survivor，如此划分是为GC收集算法所做的准备，后面的篇幅有具体介绍）
 ![图3.1.5.1 HotSpot Heap Structure](http://upload-images.jianshu.io/upload_images/1481332-0cc80185075e1e36.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.1.5.1 HotSpot Heap Structure
 
 
 图3.1.5.2 为本文2.1中示例代码的样式堆占用情况（具体数据依机器而变，参考价值有限）
 ![图3.1.5.2 Heap Usage ratio](http://upload-images.jianshu.io/upload_images/1481332-5def65145209ff4c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.1.5.2 Heap Usage ratio
 
 
@@ -301,6 +308,7 @@ GC运行时，需要Stop The World，HotSpot中，利用OopMap存储对象引用
 
 图3.3.2.1为部分JVM常规参数一览表，JVM的可配置参数极其丰富，有兴趣读者可查阅其它资料
 ![图3.3.2.1 部分JVM常规参数一览表](http://upload-images.jianshu.io/upload_images/1481332-c09be6dd982fbba3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.3.2.1 部分JVM常规参数一览表
 
 
@@ -311,16 +319,19 @@ GC运行时，需要Stop The World，HotSpot中，利用OopMap存储对象引用
 
 在年轻代内存够用的情况下，内存会被直接分配到年轻代中的Eden区域。（图3.3.3.1 写入年轻代Eden区）
 ![图3.3.3.1 写入年轻代Eden区](http://upload-images.jianshu.io/upload_images/1481332-242a868f2c4d6c45.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.3.3.1 写入年轻代Eden区
 
 
 在多次GC后，仍然存活的内存会在满足虚拟机配置参数的条件下被晋升到老年区。（图3.3.3.1 展示了年代之间的晋升）
 ![图3.3.3.2 晋升概览图](http://upload-images.jianshu.io/upload_images/1481332-2540999a7248fa74.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.3.3.2 晋升概览图
 
 
 针对不同年代，虚拟机会采用不同的收集器分时机进行收集，总结来看，年轻代的GC会比老年代的GC **更频繁，效率也更高**。（图3.3.3.3 展示了MinorGC 与 MajorGC的回收成效示例）
 ![图3.3.3.3 MinorGC & MajorGC](http://upload-images.jianshu.io/upload_images/1481332-facf61f82cf12b67.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.3.3.3 MinorGC & MajorGC
 
 
@@ -332,10 +343,12 @@ GC运行时，需要Stop The World，HotSpot中，利用OopMap存储对象引用
 
 ![图3.3.4.1 对象空间分配](http://upload-images.jianshu.io/upload_images/1481332-09da3e69c1e7de12.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 
+
 图3.3.4.1 对象空间分配
 
 图3.3.4.2-图3.3.4.4展示了对象年龄的计算方法
 ![图3.3.4.2 对象年龄](http://upload-images.jianshu.io/upload_images/1481332-099ba10858c1daac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.3.4.2 对象年龄
 
 
@@ -345,12 +358,14 @@ GC运行时，需要Stop The World，HotSpot中，利用OopMap存储对象引用
 
 除了满足晋升年龄限制条件的对象外，当年轻代的Survivor中对象平均年龄超过一定限度时，有可能会被整体直接晋升到老年区，而不用等到累加到限定的年龄。
 ![图3.3.4.4 从年轻代晋升到老年代](http://upload-images.jianshu.io/upload_images/1481332-65c85ce0940865cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.3.4.4 从年轻代晋升到老年代
 
 
 在Minor GC进行之前，如果年轻代的内存之和超过了老年代可用内存大小，会涉及到一个担保的概念，如果不允许老年代担保，会直接抛出OOM异常。
 图3.3.4.5 描述了整个内存分配的概览
 ![图3.3.4.5 直接分配至Eden区](http://upload-images.jianshu.io/upload_images/1481332-a9b46c9c1ef158eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.3.4.5 直接分配至Eden区
 
 
@@ -370,6 +385,7 @@ GC运行时，需要Stop The World，HotSpot中，利用OopMap存储对象引用
 
 图3.3.5.1.1 为标记过程，图3.3.5.1.2 为直接清除后的内存情况，可以看到未被回收的内存之间会有大小不等的间隔，这就是"内存碎片"。
 ![图3.3.5.1.1 Marking](http://upload-images.jianshu.io/upload_images/1481332-dffef12d27e0440c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.3.5.1.1 Marking
 
 
@@ -383,6 +399,7 @@ GC运行时，需要Stop The World，HotSpot中，利用OopMap存储对象引用
 
 图3.3.5.2 为HotSpot年轻代复制算法示意图，GC时，会把无法回收的内存对象"复制"至Survivor中的一块区域——Survivor 0/1会在两次相邻MinorGC之间来回切换 Copy的 From/To角色
 ![图3.3.5.2 Coping Referenced Object](http://upload-images.jianshu.io/upload_images/1481332-50f18bb588311844.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.3.5.2 Coping Referenced Object
 
 
@@ -390,6 +407,7 @@ GC运行时，需要Stop The World，HotSpot中，利用OopMap存储对象引用
 
 标记整理与标记清理的不同点在于，多了一步整理的操作，而不是直接的清除可清除内存（图3.3.5.3 展示了操作过程，可以看到内存碎片不存在了）
 ![图3.3.5.3 删除整理](http://upload-images.jianshu.io/upload_images/1481332-e57595176a60153f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.3.5.3 删除整理
 
 
@@ -416,6 +434,7 @@ GC运行时，需要Stop The World，HotSpot中，利用OopMap存储对象引用
 
 可以依照各收集器的试用内存年代做划分：
 ![图3.3.6.0.2 GC收集器](http://upload-images.jianshu.io/upload_images/1481332-a5848042f2a13510.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.3.6.0.2 GC收集器
 
 
@@ -426,6 +445,7 @@ GC运行时，需要Stop The World，HotSpot中，利用OopMap存储对象引用
 * 简单高效——没有线程交互的开销
 * 常用于Client
 ![图3.3.6.1 Serial运行示意图](http://upload-images.jianshu.io/upload_images/1481332-26a178b15d61c0d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.3.6.1 Ser
 ial运行示意图
 
@@ -436,6 +456,7 @@ ial运行示意图
 * -XX:ParallelGCThreads限制线程数量
 * 关注吞吐量
 ![图3.3.6.2 ParNew运行示意图](http://upload-images.jianshu.io/upload_images/1481332-0ba80f3d07039584.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.3.6.2 P
 arNew运行示意图
 
@@ -444,6 +465,7 @@ arNew运行示意图
 * -XX:GCTimeRatio
 * 自适应调节策略——无需手动设置-Xmn、SurvivorRatio、晋升 OldGeneration大小等参数
 ![图3.3.6.3 Parallel Scavenge运行示意图](http://upload-images.jianshu.io/upload_images/1481332-8c509f9d210e2339.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.3.6.3 Parallel Scavenge运行示意图
 
 
@@ -451,6 +473,7 @@ arNew运行示意图
 * 主要用于Client
 * 可作为CMS的后备选项
 ![图3.3.6.4 Serial Old运行示意图](http://upload-images.jianshu.io/upload_images/1481332-8927a9cb7340b35b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.3.6.4 Serial O
 ld运行示意图
 
@@ -459,6 +482,7 @@ ld运行示意图
 * 多线程 标记-整理
 * 配合ps使用在注重吞吐量及CPU敏感场合
 ![图3.3.6.5 Parallel Old运行示意图](http://upload-images.jianshu.io/upload_images/1481332-3d1db4efd09b12db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.3.6.5 Parallel Old运行示意图
 
 
@@ -467,6 +491,7 @@ ld运行示意图
 * 步骤:初始标记-并发标记-重新标记-并发清除
 * 缺点:CPU资源敏感、无法处理浮动垃圾(OG68%启用 CMS，失败时启用Serial Old)、产生大量碎片
 ![图3.3.6.6.1 CMS运行示意图](http://upload-images.jianshu.io/upload_images/1481332-962ab459822c3a93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.3.6.6.1 CMS运行示意图
 
 
@@ -485,8 +510,8 @@ G1 相比于前面所述的收集器格外不一样，因为G1在内存的划分
 * Y/O不再物理隔离
 * 有计划避免全盘GC
 ![图3.3.6.7.1 G1 运行示意图](http://upload-images.jianshu.io/upload_images/1481332-d3f472e8f57f4507.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
-图3.3.6.7.1 G1 运
-行示意图
+
+图3.3.6.7.1 G1 运行示意图
 
 G1会维护一个Region回收优先级列表（根据Region回收价值排序），RememberedSet可保证不全堆扫描也不会遗漏，线程要保证暂停在安全点，就需要维护一个RememberSetLog，这些列表需要在最终标记时与RememberedSet合并，确保不会出错。
 
