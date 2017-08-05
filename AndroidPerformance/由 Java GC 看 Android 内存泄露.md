@@ -56,6 +56,7 @@
 图1.1.1是使用MAT分析手机内存快照得到的OverView结果：
 
 ![图1.1.1 CMCM某款应用的Debug版内存泄露OverView](http://upload-images.jianshu.io/upload_images/1481332-ca4c6177eb55ae69.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图1.1.1 CMCM某款应用的Debug版内存泄露OverView
 
 
@@ -71,6 +72,7 @@
 结合上一节所举例子，由图1.1.1可见该应用的泄露足有35M之多，这一内存结果还是应用刚启动时的情况，随着用户使用时间加长，泄露只会越来越多，直到用户杀死应用或者应用主动崩溃（如图1.2.1）。
 
 ![图1.2.1 AndroidStudio 某OutOfMemory 堆栈](http://upload-images.jianshu.io/upload_images/1481332-b460f38cafbd927b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图1.2.1 AndroidStudio 某OutOfMemory 堆栈
 
 
@@ -110,6 +112,7 @@
 ![图2.1 某静态泄露的汇总结果](http://upload-images.jianshu.io/upload_images/1481332-5a2e015b3d5de3b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600/h/600)
 图2.1 某静态泄露的汇总结果
 
+
 ### 2.2 匿名内部类引发的内存泄露
 匿名内部类极易引发内存泄露，纵使这样的写法在代码层面会简洁很多，但在涉及到匿名内部类生命周期不依附于外部类时，需要我们谨慎处理，不然就很有可能引发泄露。
 
@@ -137,6 +140,7 @@
 ```
 
 ![图2.2.1 AppsFlyer leak and resolution](http://upload-images.jianshu.io/upload_images/1481332-783169a523910316.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图2.2.1 AppsFlyer leak and resolution
 
 如下代码展示了常见的Handler写法可能引发的内存泄露：
@@ -188,6 +192,7 @@ Handler、AnimationListener、AnimatorUpdateListener使用不当也极易导致�
 Android资源不及时关闭会出现内存泄露的地方有很多，诸如在使用I/O流、Cursor（图2.4.1展示了在APP开启StrictMode时会收到的FileIO未close的异常Throwable）
 
 ![图2.4.1 closable close未调用](http://upload-images.jianshu.io/upload_images/1481332-cbf5aa5529865f5f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图2.4.1 closable close未调用
 
 ### 2.5 绑定/解绑、注册/反注册未成对调用
@@ -199,9 +204,11 @@ Android资源不及时关闭会出现内存泄露的地方有很多，诸如在�
 ![图3.0.1 HotSpot Structure](http://upload-images.jianshu.io/upload_images/1481332-1bf9a615abb8e4d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 图3.0.1 HotSpot Structure
 
+
 本文所谈论的GC，处理的内存区块针对的主要是虚拟机的Heap，亦即堆。
 ![图3.0.2 HotSpot JVM components](http://upload-images.jianshu.io/upload_images/1481332-7061db0196475abb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 图3.0.2 HotSpot JVM components
+
 
 
 ### 3.1 内存分配
@@ -222,6 +229,7 @@ Android资源不及时关闭会出现内存泄露的地方有很多，诸如在�
 如图3.1.1所示的对象中，ObjD、ObjE、ObjF均为GC不可达，可以被GC回收掉
 ![图3.1.1 GC Roots reachable analyze](http://upload-images.jianshu.io/upload_images/1481332-473f69299d0029a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 图3.1.1 GC Roots reachable analyze
+
 
 #### 3.1.4 引用方式
 
@@ -246,9 +254,11 @@ GC运行时，需要Stop The World，HotSpot中，利用OopMap存储对象引用
 ![图3.1.5.1 HotSpot Heap Structure](http://upload-images.jianshu.io/upload_images/1481332-0cc80185075e1e36.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 图3.1.5.1 HotSpot Heap Structure
 
+
 图3.1.5.2 为本文2.1中示例代码的样式堆占用情况（具体数据依机器而变，参考价值有限）
 ![图3.1.5.2 Heap Usage ratio](http://upload-images.jianshu.io/upload_images/1481332-5def65145209ff4c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 图3.1.5.2 Heap Usage ratio
+
 
 #### 3.1.6 Java 的 GC Roots
 可以作为GC Roots的有：
@@ -293,6 +303,7 @@ GC运行时，需要Stop The World，HotSpot中，利用OopMap存储对象引用
 ![图3.3.2.1 部分JVM常规参数一览表](http://upload-images.jianshu.io/upload_images/1481332-c09be6dd982fbba3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 图3.3.2.1 部分JVM常规参数一览表
 
+
 #### 3.3.3 内存分配与回收策略
 * Eden为主，TLAB为辅
 * 直接进入Old-generation的情况、OOM
@@ -302,13 +313,16 @@ GC运行时，需要Stop The World，HotSpot中，利用OopMap存储对象引用
 ![图3.3.3.1 写入年轻代Eden区](http://upload-images.jianshu.io/upload_images/1481332-242a868f2c4d6c45.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 图3.3.3.1 写入年轻代Eden区
 
+
 在多次GC后，仍然存活的内存会在满足虚拟机配置参数的条件下被晋升到老年区。（图3.3.3.1 展示了年代之间的晋升）
 ![图3.3.3.2 晋升概览图](http://upload-images.jianshu.io/upload_images/1481332-2540999a7248fa74.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 图3.3.3.2 晋升概览图
 
+
 针对不同年代，虚拟机会采用不同的收集器分时机进行收集，总结来看，年轻代的GC会比老年代的GC **更频繁，效率也更高**。（图3.3.3.3 展示了MinorGC 与 MajorGC的回收成效示例）
 ![图3.3.3.3 MinorGC & MajorGC](http://upload-images.jianshu.io/upload_images/1481332-facf61f82cf12b67.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 图3.3.3.3 MinorGC & MajorGC
+
 
 #### 3.3.4 内存分配
 * 优先分配Eden（图3.3.4.1 展示直接分配至Eden区的情况）
@@ -317,23 +331,28 @@ GC运行时，需要Stop The World，HotSpot中，利用OopMap存储对象引用
 * 空间分配担保（风险、担保失败、OOM）
 
 ![图3.3.4.1 对象空间分配](http://upload-images.jianshu.io/upload_images/1481332-09da3e69c1e7de12.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.3.4.1 对象空间分配
 
 图3.3.4.2-图3.3.4.4展示了对象年龄的计算方法
 ![图3.3.4.2 对象年龄](http://upload-images.jianshu.io/upload_images/1481332-099ba10858c1daac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 图3.3.4.2 对象年龄
 
+
 ![图3.3.4.3 对象年龄的增长示例](http://upload-images.jianshu.io/upload_images/1481332-f1b583b94f371c44.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.3.4.3 对象年龄的增长示例
 
 除了满足晋升年龄限制条件的对象外，当年轻代的Survivor中对象平均年龄超过一定限度时，有可能会被整体直接晋升到老年区，而不用等到累加到限定的年龄。
 ![图3.3.4.4 从年轻代晋升到老年代](http://upload-images.jianshu.io/upload_images/1481332-65c85ce0940865cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 图3.3.4.4 从年轻代晋升到老年代
 
+
 在Minor GC进行之前，如果年轻代的内存之和超过了老年代可用内存大小，会涉及到一个担保的概念，如果不允许老年代担保，会直接抛出OOM异常。
 图3.3.4.5 描述了整个内存分配的概览
 ![图3.3.4.5 直接分配至Eden区](http://upload-images.jianshu.io/upload_images/1481332-a9b46c9c1ef158eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 图3.3.4.5 直接分配至Eden区
+
 
 #### 3.3.5 垃圾收集算法
 * 标记-清除
@@ -353,7 +372,9 @@ GC运行时，需要Stop The World，HotSpot中，利用OopMap存储对象引用
 ![图3.3.5.1.1 Marking](http://upload-images.jianshu.io/upload_images/1481332-dffef12d27e0440c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 图3.3.5.1.1 Marking
 
+
 ![图3.3.5.1.2 Normal Deletion](http://upload-images.jianshu.io/upload_images/1481332-7d913bf3a474dcd0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.3.5.1.2 Normal Deletion
 
 ##### 3.3.5.2 复制算法
@@ -364,6 +385,7 @@ GC运行时，需要Stop The World，HotSpot中，利用OopMap存储对象引用
 ![图3.3.5.2 Coping Referenced Object](http://upload-images.jianshu.io/upload_images/1481332-50f18bb588311844.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 图3.3.5.2 Coping Referenced Object
 
+
 ##### 3.3.5.3 标记整理算法
 
 标记整理与标记清理的不同点在于，多了一步整理的操作，而不是直接的清除可清除内存（图3.3.5.3 展示了操作过程，可以看到内存碎片不存在了）
@@ -371,10 +393,12 @@ GC运行时，需要Stop The World，HotSpot中，利用OopMap存储对象引用
 图3.3.5.3 删除整理
 
 
+
 #### 3.3.6 垃圾收集器种类
 垃圾收集器从运行方式上来分，主要分串行、并行两类。
 
 ![图3.3.6.0.1 串行-并行收集器](http://upload-images.jianshu.io/upload_images/1481332-d44647bb58bf7c2b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.3.6.0.1 串行-并行收集器
 
 由图3.3.6.1可见两种方式的主要区别是在STW时运行GC的线程数量不一样，然而并不能简单得理解"pause 时间越短"越好，在低性能的Client上需要考虑多线程切换的消耗。
@@ -394,6 +418,7 @@ GC运行时，需要Stop The World，HotSpot中，利用OopMap存储对象引用
 ![图3.3.6.0.2 GC收集器](http://upload-images.jianshu.io/upload_images/1481332-a5848042f2a13510.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 图3.3.6.0.2 GC收集器
 
+
 **下面就各收集器特点做要点说明：**
 
 
@@ -401,7 +426,8 @@ GC运行时，需要Stop The World，HotSpot中，利用OopMap存储对象引用
 * 简单高效——没有线程交互的开销
 * 常用于Client
 ![图3.3.6.1 Serial运行示意图](http://upload-images.jianshu.io/upload_images/1481332-26a178b15d61c0d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
-图3.3.6.1 Serial运行示意图
+图3.3.6.1 Ser
+ial运行示意图
 
 ##### 3.3.6.2 ParNew
 * 常用于Server模式
@@ -410,7 +436,8 @@ GC运行时，需要Stop The World，HotSpot中，利用OopMap存储对象引用
 * -XX:ParallelGCThreads限制线程数量
 * 关注吞吐量
 ![图3.3.6.2 ParNew运行示意图](http://upload-images.jianshu.io/upload_images/1481332-0ba80f3d07039584.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
-图3.3.6.2 ParNew运行示意图
+图3.3.6.2 P
+arNew运行示意图
 
 ##### 3.3.6.3 Parallel Scavenge
 * -XX:MaxGCPauseMillis——停顿时间以牺牲吞吐量和新生代空间为代价
@@ -419,11 +446,13 @@ GC运行时，需要Stop The World，HotSpot中，利用OopMap存储对象引用
 ![图3.3.6.3 Parallel Scavenge运行示意图](http://upload-images.jianshu.io/upload_images/1481332-8c509f9d210e2339.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 图3.3.6.3 Parallel Scavenge运行示意图
 
+
 ##### 3.3.6.4 Serial Old
 * 主要用于Client
 * 可作为CMS的后备选项
 ![图3.3.6.4 Serial Old运行示意图](http://upload-images.jianshu.io/upload_images/1481332-8927a9cb7340b35b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
-图3.3.6.4 Serial Old运行示意图
+图3.3.6.4 Serial O
+ld运行示意图
 
 ##### 3.3.6.5 Parallel Old
 * Parallel Scavenge的Old generation版本
@@ -432,6 +461,7 @@ GC运行时，需要Stop The World，HotSpot中，利用OopMap存储对象引用
 ![图3.3.6.5 Parallel Old运行示意图](http://upload-images.jianshu.io/upload_images/1481332-3d1db4efd09b12db.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 图3.3.6.5 Parallel Old运行示意图
 
+
 ##### 3.3.6.6 CMS
 * 目标:获取最短回收停顿时间(标记-清除算法)
 * 步骤:初始标记-并发标记-重新标记-并发清除
@@ -439,7 +469,9 @@ GC运行时，需要Stop The World，HotSpot中，利用OopMap存储对象引用
 ![图3.3.6.6.1 CMS运行示意图](http://upload-images.jianshu.io/upload_images/1481332-962ab459822c3a93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 图3.3.6.6.1 CMS运行示意图
 
+
 ![图3.3.6.6.2 Serial收集器与CMS收集器操作线程比较](http://upload-images.jianshu.io/upload_images/1481332-0d5f648b819bd823.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图3.3.6.6.2 Serial收集器与CMS收集器操作线程比较
 
 ##### 3.3.6.7 G1
@@ -453,7 +485,8 @@ G1 相比于前面所述的收集器格外不一样，因为G1在内存的划分
 * Y/O不再物理隔离
 * 有计划避免全盘GC
 ![图3.3.6.7.1 G1 运行示意图](http://upload-images.jianshu.io/upload_images/1481332-d3f472e8f57f4507.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
-图3.3.6.7.1 G1 运行示意图
+图3.3.6.7.1 G1 运
+行示意图
 
 G1会维护一个Region回收优先级列表（根据Region回收价值排序），RememberedSet可保证不全堆扫描也不会遗漏，线程要保证暂停在安全点，就需要维护一个RememberSetLog，这些列表需要在最终标记时与RememberedSet合并，确保不会出错。
 
@@ -516,12 +549,15 @@ Android内存泄露判定-解决方法
 _各大工具的使用方法因篇幅所限，就不具体介绍，相关资料亦是汗牛充犊。_
 
 ![图5.1.1 AS分析出的泄露现场](http://upload-images.jianshu.io/upload_images/1481332-ca53c4d2e0fd72d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图5.1.1 AS分析出的泄露现场
 
 ![图5.1.2 Leak by MAT](http://upload-images.jianshu.io/upload_images/1481332-c29f25476bbacbe2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图5.1.2 Leak by MAT
 
 ![图5.1.3 (by LeakCanary) 未反注册及未取消动画更新监听的泄露GC-Root引用路径](http://upload-images.jianshu.io/upload_images/1481332-97d976558b387970.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+
 图5.1.3 (by LeakCanary
 
 * 查找内存泄露步骤:
