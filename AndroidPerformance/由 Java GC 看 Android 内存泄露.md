@@ -607,19 +607,17 @@ Android内存泄露判定-解决方法
 _各大工具的使用方法因篇幅所限，就不具体介绍，相关资料亦是汗牛充犊。_
 
 
-![5.1.1 ](http://upload-images.jianshu.io/upload_images/1481332-ca53c4d2e0fd72d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+![5.1.1](http://upload-images.jianshu.io/upload_images/1481332-ca53c4d2e0fd72d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 
 图5.1.1 AS分析出的泄露现场
 
-
-![5.1.1 ](http://upload-images.jianshu.io/upload_images/1481332-c29f25476bbacbe2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+![5.1.2](http://upload-images.jianshu.io/upload_images/1481332-c29f25476bbacbe2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 
 图5.1.2 Leak by MAT
 
+![5.1.3](http://upload-images.jianshu.io/upload_images/1481332-97d976558b387970.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 
-![5.1.1 ](http://upload-images.jianshu.io/upload_images/1481332-97d976558b387970.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
-
-图5.1.3 (by LeakCanary
+图5.1.3 by LeakCanary
 
 * 查找内存泄露步骤:
     * 了解OutOfMemoryError 情况
