@@ -521,7 +521,7 @@ ld运行示意图
 * 步骤:初始标记-并发标记-重新标记-并发清除
 * 缺点:CPU资源敏感、无法处理浮动垃圾(OG68%启用 CMS，失败时启用Serial Old)、产生大量碎片
 
-![图3.3.6.6.1 CMS运行示意图](http://upload-images.jianshu.io/upload_images/1481332-962ab459822c3a93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+![](http://upload-images.jianshu.io/upload_images/1481332-962ab459822c3a93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 
 图3.3.6.6.1 CMS运行示意图
 
@@ -607,17 +607,17 @@ Android内存泄露判定-解决方法
 _各大工具的使用方法因篇幅所限，就不具体介绍，相关资料亦是汗牛充犊。_
 
 
-![图5.1.1 AS分析出的泄露现场](http://upload-images.jianshu.io/upload_images/1481332-ca53c4d2e0fd72d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+![](http://upload-images.jianshu.io/upload_images/1481332-ca53c4d2e0fd72d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 
 图5.1.1 AS分析出的泄露现场
 
 
-![图5.1.2 Leak by MAT](http://upload-images.jianshu.io/upload_images/1481332-c29f25476bbacbe2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+![](http://upload-images.jianshu.io/upload_images/1481332-c29f25476bbacbe2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 
 图5.1.2 Leak by MAT
 
 
-![图5.1.3 (by LeakCanary) 未反注册及未取消动画更新监听的泄露GC-Root引用路径](http://upload-images.jianshu.io/upload_images/1481332-97d976558b387970.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
+![](http://upload-images.jianshu.io/upload_images/1481332-97d976558b387970.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600)
 
 图5.1.3 (by LeakCanary
 
