@@ -12,7 +12,9 @@
 4. 进入AllApps
 5. 进入天气
 6. 进入搜索
-7. 应用3D主题（）
+7. 应用3D主题之后
+8. 3D主题关屏之后
+9. 从3D切回2D
 
 
 
@@ -23,6 +25,8 @@
 * launcher进程内，各模块切换时未出现太大波动
 * 但launcher起始值（Gfx dev）在 40000KB（~40M）左右，考虑这一点是否有改进必要、空间？
 * 3D主题相较2D，内存占用升高~17M左右（具体值未严格测试）
+* 关屏之后（静置>2min），未对内存占用做优化处理——考虑是否可行？是否必要？？？
+* 从3D切回2D，内存反增11M左右（对此dump文件感兴趣的同学联系我）——此处需要分析hprof，找到问题点
 
 
 
@@ -270,7 +274,7 @@
                TOTAL:   248190      TOTAL SWAP (KB):        0
 ```
 
-###  应用3D主题
+###  应用3D主题之后
 ```Java
 ** MEMINFO in pid 23770 [com.ksmobile.launcher] **
                    Pss  Private  Private  Swapped     Heap     Heap     Heap
@@ -307,3 +311,120 @@
 
                TOTAL:   192629      TOTAL SWAP (KB):        0
 ```
+### 3D桌面——关屏
+
+> 静置1min
+
+~~~java
+** MEMINFO in pid 23770 [com.ksmobile.launcher] **
+                   Pss  Private  Private  Swapped     Heap     Heap     Heap
+                 Total    Dirty    Clean    Dirty     Size    Alloc     Free
+                ------   ------   ------   ------   ------   ------   ------
+  Native Heap    20416    20388        0        0    33280    27504     5775
+  Dalvik Heap    34972    34900        0        0    60660    44452    16208
+ Dalvik Other     3228     3228        0        0
+        Stack     1088     1088        0        0
+       Ashmem      150      136        0        0
+      Gfx dev    59148    59148        0        0
+    Other dev        8        0        8        0
+     .so mmap    12463      284     9176        0
+    .apk mmap     2967        0     2524        0
+    .ttf mmap      110        0      108        0
+    .dex mmap    31520       52    26864        0
+    .oat mmap     3170        0     1560        0
+    .art mmap     1701     1348       20        0
+   Other mmap     1359        8     1120        0
+   EGL mtrack    44880    44880        0        0
+      Unknown     3652     3652        0        0
+        TOTAL   220832   169112    41380        0    93940    71956    21983
+
+ App Summary
+                       Pss(KB)
+                        ------
+           Java Heap:    36268
+         Native Heap:    20388
+                Code:    40568
+               Stack:     1088
+            Graphics:   104028
+       Private Other:     8152
+              System:    10340
+
+               TOTAL:   220832      TOTAL SWAP (KB):        0
+~~~
+### 从3D切回2D
+
+~~~java
+** MEMINFO in pid 23770 [com.ksmobile.launcher] **
+                   Pss  Private  Private  Swapped     Heap     Heap     Heap
+                 Total    Dirty    Clean    Dirty     Size    Alloc     Free
+                ------   ------   ------   ------   ------   ------   ------
+  Native Heap    23624    23596        0        0    37376    31068     6307
+  Dalvik Heap    48127    48056        0        0    69274    53190    16084
+ Dalvik Other     3368     3368        0        0
+        Stack     1256     1256        0        0
+       Ashmem      150      136        0        0
+      Gfx dev    70896    70896        0        0
+    Other dev        8        0        8        0
+     .so mmap     4425      320      968        0
+    .apk mmap      654        0       64        0
+    .ttf mmap      118        0      108        0
+    .dex mmap    13328       52     8816        0
+    .oat mmap     1996        0      380        0
+    .art mmap     2020     1440      332        0
+   Other mmap       88        8        0        0
+   EGL mtrack    53520    53520        0        0
+      Unknown     3668     3668        0        0
+        TOTAL   227246   206316    10676        0   106650    84258    22391
+
+ App Summary
+                       Pss(KB)
+                        ------
+           Java Heap:    49828
+         Native Heap:    23596
+                Code:    10708
+               Stack:     1256
+            Graphics:   124416
+       Private Other:     7188
+              System:    10254
+
+               TOTAL:   227246      TOTAL SWAP (KB):        0
+          
+------------------------              
+After 5Min------------------              
+------------------------              
+** MEMINFO in pid 23770 [com.ksmobile.launcher] **
+                   Pss  Private  Private  Swapped     Heap     Heap     Heap
+                 Total    Dirty    Clean    Dirty     Size    Alloc     Free
+                ------   ------   ------   ------   ------   ------   ------
+  Native Heap    23368    23340        0        0    37120    30598     6521
+  Dalvik Heap    43928    43856        0        0    69379    65551     3828
+ Dalvik Other     3560     3560        0        0
+        Stack     1244     1244        0        0
+       Ashmem      150      136        0        0
+      Gfx dev    72440    72440        0        0
+    Other dev        8        0        8        0
+     .so mmap     3636      320      788        0
+    .apk mmap      395        0        0        0
+    .ttf mmap       26        0        8        0
+    .dex mmap    12470       52     8176        0
+    .oat mmap     2610        0      260        0
+    .art mmap     2159     1456       28        0
+   Other mmap       58        8       20        0
+   EGL mtrack    44880    44880        0        0
+      Unknown     3668     3668        0        0
+        TOTAL   214600   194960     9288        0   106499    96149    10349
+
+ App Summary
+                       Pss(KB)
+                        ------
+           Java Heap:    45340
+         Native Heap:    23340
+                Code:     9604
+               Stack:     1244
+            Graphics:   117320
+       Private Other:     7400
+              System:    10352
+
+               TOTAL:   214600      TOTAL SWAP (KB):        0
+~~~
+
