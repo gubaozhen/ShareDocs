@@ -2,9 +2,14 @@
 
 * 调研ANR
   * 结论：ANR Top类型出现的问题比较典型地集中在3大类问题上，可以考虑解一波典型ANR
+    * 发生率1.97%
+    * 典型问题：Broadcast：Screen_on/Screen_off/Time_tick、Input dispatching、executing sevice
+    * 典型Android版本：6.0 (34.9%)、5.1 (24.6%)、4.4 (15.8%)、7.0 (10.4%)
+    * 典型App版本： 35504 （占45%）
 * 7.0 上 ANR是否会出现差异性增高？
   * 结论：未曾发现有差异性增高
 * 尝试解决ANR
+  * 推荐filter：Last7D，Android6.0，V35504
   * 下一步工作
 
 # 思路
